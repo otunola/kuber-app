@@ -22,18 +22,15 @@ spec:
         volumeMounts:
         - name: vpro-db-data
           mountPath: /var/lib/mysql
-      ports:
-      - containerPort: 3306
-        name: mysql
-        protocol: TCP
-        targetPort: 3306
-        nodePort: 30001
-      env:
-      - name: MYSQL_ROOT_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: app-secret
-            key: db-pass
+          
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: db-pass
       nodeSelector:
         zone: us-east-1a
       volumes:
